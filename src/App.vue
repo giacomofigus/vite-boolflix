@@ -32,7 +32,7 @@
         
         axios.get(store.ApiUrl).then((res) =>{
           store.arrayFilms = res.data.results
-          console.log(store.arrayFilms);     
+          console.log(store.arrayFilms[19].original_language);     
         })
 
       }
