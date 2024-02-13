@@ -1,10 +1,21 @@
 <template>
-    
+    <h2 class="mt-4 ms-2">Film Cercati:</h2>
+    <ul>
+        <li v-for="(element, index) in store.arrayFilms">
+            {{ element.original_title }}, {{ element.title }}, {{ element.original_language }}, {{ element.vote_average }}
+        </li>
+    </ul>
 </template>
 
 <script>
+    import {store} from "../store"
+
     export default{
-        name: "AppMain"
+        name: "AppMain",
+
+        data(){
+            return{store}
+        }
     }
 </script>
 
