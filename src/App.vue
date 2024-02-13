@@ -1,6 +1,6 @@
 <script>
 
-
+  
   import AppHeader from './components/AppHeader.vue'
   import AppMain from './components/AppMain.vue'
   import {store} from "./store"
@@ -32,8 +32,9 @@
         
         axios.get(store.ApiUrl).then((res) =>{
           store.arrayFilms = res.data.results
-          console.log(store.arrayFilms[19].original_language);     
+              
         })
+
 
       }
     }
