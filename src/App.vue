@@ -23,26 +23,41 @@
         // Se il value non è vuoto, controllando anche se ci siano degli spazi esternamente alla parola
         if (this.store.valueFilm.trim() !== '') {
 
-            // Viene effettuato un check se all'interno del link API ci sia già presente la stringa "&query = qualsiasi cosa", e se fosse presente sostituirla con uno spazio vuoto
             this.store.ApiUrl = this.store.ApiUrl.replace(/&query=.*/, '');
 
-            // Per poi aggiungere al link API la parola inserita all'interno del campo input
+            this.store.ApiSeries = this.store.ApiSeries.replace(/&query=.*/, '')
+
             this.store.ApiUrl += `&query=${this.store.valueFilm}`
+
+            this.store.ApiSeries += `&query=${this.store.valueFilm}`
         }
         
         axios.get(store.ApiUrl).then((res) =>{
           store.arrayFilms = res.data.results
-              
+          // console.log(store.arrayFilms);
         })
 
+        axios.get(store.ApiSeries).then((res) => {
+          this.store.arraySeries = res.data.results;
+          // console.log(store.arraySeries);
+        });
+      },
+      getSeries(){
 
+        // this.store.ApiSeries += `&query=${this.store.valueFilm}`
+
+        // axios.get(store.ApiSeries).then((res) => {
+        //   this.store.arraySeries = res.data.results;
+        //   console.log(store.ApiSeries);
+          
+        // });
       }
     }
   }
 </script>
 
 <template>
-  <AppHeader @searchFilm="getFilms()"/>
+  <AppHeader @searchFilm="getFilms(), getSeries()"/>
   <AppMain/>
 </template>
 
