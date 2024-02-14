@@ -34,23 +34,14 @@
         
         axios.get(store.ApiUrl).then((res) =>{
           store.arrayFilms = res.data.results
-          // console.log(store.arrayFilms);
+          // console.log(store.arrayFilms);          
+
         })
 
         axios.get(store.ApiSeries).then((res) => {
           this.store.arraySeries = res.data.results;
           // console.log(store.arraySeries);
         });
-      },
-      getSeries(){
-
-        // this.store.ApiSeries += `&query=${this.store.valueFilm}`
-
-        // axios.get(store.ApiSeries).then((res) => {
-        //   this.store.arraySeries = res.data.results;
-        //   console.log(store.ApiSeries);
-          
-        // });
       }
     }
   }
