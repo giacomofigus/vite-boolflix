@@ -20,6 +20,15 @@
     methods:{
       getFilms(){
 
+        const input = document.getElementById("searchBar")
+          const magn = document.getElementById("search")
+
+          if (input.classList.contains("active")) {     
+            input.classList.remove("active");
+          } else {
+            input.classList.add("active");
+          }
+
         // Se il value non è vuoto, controllando anche se ci siano degli spazi esternamente alla parola
         if (this.store.valueFilm.trim() !== '') {
 
@@ -34,13 +43,13 @@
         
         axios.get(store.ApiUrl).then((res) =>{
           store.arrayFilms = res.data.results
-          // console.log(store.arrayFilms);          
+          console.log(store.arrayFilms);      
 
         })
 
         axios.get(store.ApiSeries).then((res) => {
           this.store.arraySeries = res.data.results;
-          // console.log(store.arraySeries);
+          console.log(store.arraySeries);
         });
       }
     }
@@ -48,10 +57,10 @@
 </script>
 
 <template>
-  <AppHeader @searchFilm="getFilms(), getSeries()"/>
+  <AppHeader @searchFilm="getFilms()"/>
   <AppMain/>
 </template>
 
 <style lang="scss">
-  
+  @use './styles/general.scss'
 </style>

@@ -9,8 +9,5 @@ export const store = reactive({
 
     //Serie Tv
     ApiSeries: "https://api.themoviedb.org/3/search/tv?api_key=980a1a5c51cee9d7c58a1c9d39e12ea6",
-    arraySeries: [],
-
-    //Img
-    
+    arraySeries: [],    
 })
