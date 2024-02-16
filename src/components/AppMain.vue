@@ -5,6 +5,7 @@
             <div class="bg-transparent py-5">
                 <h2 class="poppins-bold">Lorem Ipsum</h2>
                 <p class="poppins-regular mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste nulla, libero quia, suscipit non harum tempora laborum sit aliquid officia velit rem iusto odio, repellendus id? Adipisci inventore accusantium reprehenderit.</p>
+                <button  class="text-white poppins-regular">Play</button>
             </div>
         </div>
 
@@ -19,6 +20,7 @@
                 <div
                 id="singleCard" 
                 v-for="(element, index) in store.arrayFilms"
+                
                 >
                     <!-- Immagine -->
                     <div class=" position-relative ">
@@ -32,7 +34,17 @@
                             <!-- Bandiera -->
                             <lang-flag id="langflag" :iso="element.original_language"/>
                             <!-- Punteggio -->
-                            <span class="text-center poppins-regular">{{ element.vote_average }}</span>
+                            <span 
+                            class="text-center poppins-regular"
+                           
+                            >
+                                <i 
+                                class="text-warning"
+                                v-for="i in 5"
+                                :class="i <= Math.ceil(element.vote_average / 2) ? 'fas fa-star' : 'far fa-star'"
+                                ></i>
+                            </span>
+                            
                         </div>
                     </div>
                 </div>
@@ -55,14 +67,20 @@
                         <!-- Immagine -->
                         <img :src="getImageUrl(element.poster_path)" class="w-100 ">
         
-                        <div id="Info" class="position-absolute top-0">
+                        <div id="Info" class="position-absolute top-0 ">
                             <!-- Titolo -->
-                            <span class="fw-bold text-center">{{ element.original_name }}</span> 
+                            <span class="fw-bold text-center d-block">{{ element.original_name }}</span> 
         
                             <!-- Bandiera -->
                             <lang-flag id="langflag" :iso="element.original_language"/>
                             <!-- Punteggio -->
-                            <span class="text-center">{{ element.vote_average }}</span>                
+                            <span class="text-center d-block">
+                                <i 
+                                class="text-warning"
+                                v-for="i in 5"
+                                :class="i <= Math.ceil(element.vote_average / 2) ? 'fas fa-star' : 'far fa-star'"
+                                ></i>
+                            </span>                
                         </div>
                     </div>
     
@@ -86,11 +104,13 @@
         data(){
             return{
                 store,
-                check: true
+                
             }
         },
         methods:{
             getImageUrl(posterPath){
+
+                console.log(this.filledStars);
                 if(posterPath !== null){
                     const baseUrl = "https://image.tmdb.org/t/p/";
                     const size = "w500"; 
@@ -99,6 +119,12 @@
                 } else{
                     return "https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
                 }
+
+                
+            },
+
+            filledStars(){
+
             }
         }
     }
@@ -114,6 +140,15 @@
 
             p{
                 width: 500px;
+            }
+
+            button{
+                padding-inline: 40px;
+                padding-block: 8px;
+                border: none;
+                border-radius: 20px;
+                background-color: #E50914;
+                margin-top: 10px;
             }
 
             p, h2{
@@ -134,6 +169,7 @@
             flex-basis: calc(100% / 8 - 10px);
             margin-bottom: 10px;
             z-index: 0;
+            cursor: pointer;
 
             img:hover{
                 opacity: 0.1;
